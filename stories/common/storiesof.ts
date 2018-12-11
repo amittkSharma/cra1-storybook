@@ -1,5 +1,12 @@
 import { storiesOf, Story } from "@storybook/react";
 import { StoryInfo } from "./interfaces";
+import { Options, withInfo } from "@storybook/addon-info";
+
+const withInfoOptions: Options = {
+  header: false,
+  inline: true,
+  source: true
+};
 
 const DEFAULT_SECTION = "Components";
 export function getStoryHierarchy(
@@ -20,5 +27,5 @@ export function getStory(p: StoryInfo): Story {
   return storiesOf<Story>(
     getStoryHierarchy(p.label, p.sectionName, p.subSectionName),
     module
-  );
+  ).addDecorator(withInfo(withInfoOptions));
 }
